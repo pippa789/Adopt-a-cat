@@ -68,7 +68,7 @@ const App = () => {
     if(error.error){
       return <h1>{error.message}</h1>
     }
-  
+
     return(
     <>
       <Modal isOpen={modalOpen}>
@@ -79,7 +79,7 @@ const App = () => {
         <div className="card">  
           <h2>{item.name}</h2>
           <img className="image" src={item.url} alt="Cat"></img>
-          <h2>Price: £{item.price}</h2>
+          <h2>Adoption fee</h2>
           <RemoveFromCart function2={removeHandler} index={index} func3={minus} price2={item.price}/>
           <button onClick={() => setModalOpen(false)}>Close</button>
         </div>
@@ -90,17 +90,17 @@ const App = () => {
       <div className = "wholepage">
       <div className = "titleBar">
         <h1 className="navItem" >Cats for life .com</h1>
-          
-        </div>
-        </div>
+      </div>
+      </div>
     <div className = "Header">
       <div className="textwrap"> 
-        <h1 className="headertext">Your new best friend</h1>
-        <h2 className="headertext">is just a click away.</h2>
+        <h1 className="headertext">Your new best friend is just a click away</h1>
+        
+        <button className="navItem navButton" onClick={getCats}>Browse Cats</button>
       </div>
     </div>
     <div className = "navWrap">
-      <button className="navItem navButton" onClick={getCats}>Browse Cats</button>
+      
     </div>
     <div className = "imageContainer">
       {cats.map((item, index) => {
@@ -108,7 +108,6 @@ const App = () => {
           <div className="card">  
           <h2>{item.name}</h2>
           <img className="image" src={item.url} alt="Cat"></img>
-          <h2>Price: £{item.price}</h2>
           <AddToCart price = {item.price} cat = {item} func={activeBasket} /> 
            <button onClick={() => setModalOpen(true)}> View cart
           </button>
@@ -116,54 +115,29 @@ const App = () => {
         )
       })}
       </div> 
-      
-        {/* ImageContainer need to have a button for purchasing and adding it to basket */}  
+       
     <div className = "footer">
-          Built with React - Codenation Master Coding Bootcamp 2021 - Pip, Steven, Anthony and Daniel. 
+          Built with React - Codenation Master Coding Bootcamp 2021. 
     </div>
   </>
   ) 
 }
-
 //ADD TO CART COMPONENT
 const AddToCart = (props) => {
   return(
     <div>
       <button className="navButton" onClick = { () => props.func(props.cat)}>£{props.price}</button>
+     
     </div>
   )
 }
-
 //REMOVE FROM CART COMPONENT
 const RemoveFromCart = (props) => {
   return(
     <div>
-      <button className="navButton" onClick = { () => props.function2(props.index, props.price2)}>Remove from Basket</button>
-      <div>
-        
-      </div>
+      <button className="navButton" onClick = { () => props.function2(props.index, props.price2)}>Remove from cart</button>
     </div>
-    
-  )
+    )
 } 
-// MODAL COMPONENT
-// const [modalIsOpen, setModalIsOpen] = useState(false);
-// const CartModal = () => {
-//   const setModalIsOpenTrue = () => {
-//     setModalIsOpen(true)
-//   }
-//   const setModalIsOpenFalse = () => {
-//     setModalIsOpen(false)
-//   }
-//   return(
-//     <>
-//     <button onClick={setModalIsOpenTrue}>Add to cart</button>
-//     <Modal isOpen={modalIsOpen}>
-//       <button onClick={setModalIsOpenFalse}>X</button>
-//       <AddToCart />
-//       <RemoveFromCart />
-//     </Modal>
-//     </>
-//   )
-// }
+
 export default App
